@@ -1,6 +1,6 @@
 using System;
 
-namespace HackathonFeedbackApp
+namespace Feedback.API
 {
     public class WeatherForecast
     {

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace HackathonFeedbackApp
+namespace Feedback.API
 {
     public class Program
     {
