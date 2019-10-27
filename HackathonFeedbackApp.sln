@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedback.Web", "Feedback.Web\Feedback.Web.csproj", "{EF8D8534-4262-4E6D-B3D1-DA5533DDBDEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.Web", "Feedback.Web\Feedback.Web.csproj", "{EF8D8534-4262-4E6D-B3D1-DA5533DDBDEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedback.API", "Feedback.API\Feedback.API.csproj", "{92AD3E7C-7774-44D9-BDD5-794E26D515CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.API", "Feedback.API\Feedback.API.csproj", "{92AD3E7C-7774-44D9-BDD5-794E26D515CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedback.Services", "Feedback.Services\Feedback.Services.csproj", "{59105803-21BE-4AB1-BDD3-559FE5428AF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.Database", "Feedback.Services\Feedback.Database.csproj", "{59105803-21BE-4AB1-BDD3-559FE5428AF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
