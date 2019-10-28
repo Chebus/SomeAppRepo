@@ -22,9 +22,25 @@ namespace Feedback.Web.Controllers
         }
 
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
             return View("List");
+        }
+
+        // GET: /<controller>/Add
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return PartialView("_Add", new ReviewViewModel());
+        }
+
+        // POST: /<controller>/Add
+        [HttpPost]
+        public IActionResult Add(ReviewViewModel vm)
+        {
+            //todo
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: /<controller>/Get
