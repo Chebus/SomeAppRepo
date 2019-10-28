@@ -1,11 +1,11 @@
-﻿using Feedback.Database.Models;
-using Feedback.Services.Interfaces;
+﻿using Feedback.Database.Interfaces;
+using Feedback.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Feedback.Services
+namespace Feedback.Database.Services
 {
     public class ReviewService : IReviewService
     {
@@ -23,7 +23,12 @@ namespace Feedback.Services
         public Review GetReview(int id)
         {
             //todo
-            return new Review();
+            if (id == 1)
+            {
+                return new Review();
+            }
+
+            return null;
         }
     }
 }

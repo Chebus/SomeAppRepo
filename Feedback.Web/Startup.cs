@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Feedback.Database.Interfaces;
+using Feedback.Database.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,8 +34,13 @@ namespace Feedback.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //add API controllers to Web project
+            var apiAssembly = Assembly.Load("Feedback.API");
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddApplicationPart(apiAssembly).AddControllersAsServices();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //Register services
+            services.AddScoped<ILookupService, LookupService>();
+            services.AddScoped<IReviewService, ReviewService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +65,8 @@ namespace Feedback.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Review}/{action=Index}/{id?}");
+
             });
         }
     }

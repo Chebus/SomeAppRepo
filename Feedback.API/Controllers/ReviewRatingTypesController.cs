@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Feedback.Database.Interfaces;
 using Feedback.Database.Models;
-using Feedback.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Feedback.API.Controllers
@@ -20,7 +20,13 @@ namespace Feedback.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ReviewRatingType>> Get()
         {
-            return _lookupService.GetReviewRatingTypes();
+            var result = _lookupService.GetReviewRatingTypes();
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
 
         // GET api/reviewratingtypes/5

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Reviews";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+
+    <table id="tblReviews" class="display">
+        <thead>
+            <tr>
+                <th>Review Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script tpye="text/javascript">
+    $(document).ready( function () {
+        $('#tblReviews').DataTable({
+            ajax: "@Url.Action("GetAll", "Review")",
+            columns: [
+                { data: 0 }
+                ]
+        });
+    });
+    </script>
+}

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.Web", "Feedback.Web\Feedback.Web.csproj", "{EF8D8534-4262-4E6D-B3D1-DA5533DDBDEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.UserInterface", "Feedback.Web\Feedback.UserInterface.csproj", "{EF8D8534-4262-4E6D-B3D1-DA5533DDBDEC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.API", "Feedback.API\Feedback.API.csproj", "{92AD3E7C-7774-44D9-BDD5-794E26D515CA}"
 EndProject
