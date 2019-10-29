@@ -64,7 +64,7 @@ namespace Feedback.Web.Controllers
             {
                 var reviews = ((result.Result as OkObjectResult).Value as IEnumerable<Review>);
 
-                list = reviews.Select(x => x.ReviewRatingId).ToList();
+                list = reviews.Select(x => x.ReviewRatingTypeId).ToList();
             }
             else if (result.Result.GetType() == typeof(NotFoundResult))
             {

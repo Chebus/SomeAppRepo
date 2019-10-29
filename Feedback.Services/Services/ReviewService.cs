@@ -1,4 +1,5 @@
-﻿using Feedback.Database.Interfaces;
+﻿using Feedback.Database.Contexts;
+using Feedback.Database.Interfaces;
 using Feedback.Database.Models;
 using System.Collections.Generic;
 
@@ -6,6 +7,13 @@ namespace Feedback.Database.Services
 {
     public class ReviewService : IReviewService
     {
+        private FeedbackDbContext _context;
+
+        public ReviewService(FeedbackDbContext context)
+        {
+            _context = context;
+        }
+
         public void CreateReview(Review review)
         {
             //todo

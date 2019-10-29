@@ -10,7 +10,7 @@ namespace Feedback.UserInterface.Mappers
             return new Review()
             {
                 Id = model.Id,
-                ReviewRatingId = model.RatingId,
+                ReviewRatingTypeId = model.RatingId,
                 Comment = model.Comment,
             };
         }
