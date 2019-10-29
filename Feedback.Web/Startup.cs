@@ -16,6 +16,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Feedback.Database.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Feedback.Web
 {
@@ -51,6 +53,11 @@ namespace Feedback.Web
             {
                 options.LoginPath = new PathString("/Account");
             });
+
+            //Configure DB context
+            var connectionString = Configuration["AppSettings:ConnectionString"];
+            var isEnvVariable = bool.Parse(Configuration["AppSettings:IsConnectionStringEnvVariable"]);
+            services.AddDbContext<FeedbackDbContext>(options => options.UseMySql(isEnvVariable ? Environment.GetEnvironmentVariable(connectionString) : connectionString));
 
             //Register services
             services.AddScoped<ILookupService, LookupService>();
