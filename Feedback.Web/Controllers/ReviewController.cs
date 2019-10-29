@@ -43,21 +43,21 @@ namespace Feedback.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: /<controller>/Get
+        // GET: /<controller>/List
         [HttpGet]
         public ActionResult<IEnumerable<int>> List()
         {
             var list = new List<int>() { 0 };
 
-            var httpResult = (_reviewsController.Get().Result as ObjectResult);
+            var result = _reviewsController.Get();
 
-            if (httpResult.StatusCode == (int)HttpStatusCode.OK)
+            if (result.Result.GetType() == typeof(OkObjectResult))
             {
-                var reviews = (httpResult.Value as IEnumerable<Review>);
+                var reviews = ((result.Result as OkObjectResult).Value as IEnumerable<Review>);
 
                 list = reviews.Select(x => x.ReviewRatingId).ToList();
             }
-            else if (httpResult.StatusCode == (int)HttpStatusCode.NotFound)
+            else if (result.Result.GetType() == typeof(NotFoundResult))
             {
                 //Show 404 message
             }
