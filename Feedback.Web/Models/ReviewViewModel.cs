@@ -5,6 +5,10 @@ namespace Feedback.Web.Models
 {
     public class ReviewViewModel
     {
+        public int Id { get; set; }
+
+        public int RatingId { get; set; }
+
         [DisplayName("Rating")]
         public string Rating { get; set; }
 

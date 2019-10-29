@@ -44,9 +44,11 @@ namespace Feedback.API.Controllers
 
         // POST api/review
         [HttpPost]
-        public void Post([FromBody] Review review)
+        public StatusCodeResult Post([FromBody] Review review)
         {
             _reviewService.CreateReview(review);
+
+            return Ok();
         }
     }
 }

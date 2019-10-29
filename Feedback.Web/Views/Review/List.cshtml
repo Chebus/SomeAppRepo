@@ -25,9 +25,7 @@
     $(document).ready( function () {
         $('#tblReviews').DataTable({
             ajax: "@Url.Action("List", "Review")",
-            columns: [
-                { data: 0 }
-                ]
+            searching: false
         });
     });
     </script>

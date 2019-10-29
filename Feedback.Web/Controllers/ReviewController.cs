@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Feedback.API.Controllers;
 using Feedback.Database.Models;
+using Feedback.UserInterface.Mappers;
 using Feedback.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,7 +40,17 @@ namespace Feedback.Web.Controllers
         [HttpPost]
         public IActionResult Add(ReviewViewModel vm)
         {
-            //todo
+            var result = _reviewsController.Post(vm.ToReview());
+
+            if (result.GetType() == typeof(OkResult))
+            {
+                //success message
+            }
+            else
+            {
+                //Error
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
