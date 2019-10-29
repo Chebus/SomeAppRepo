@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Feedback.Database.Interfaces;
+﻿using Feedback.Database.Interfaces;
 using Feedback.Database.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Feedback.API.Controllers
 {

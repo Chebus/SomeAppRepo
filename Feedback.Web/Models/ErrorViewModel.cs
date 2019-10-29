@@ -1,5 +1,3 @@
-using System;
-
 namespace Feedback.Web.Models
 {
     public class ErrorViewModel
