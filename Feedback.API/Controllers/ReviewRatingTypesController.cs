@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using Feedback.Database.Interfaces;
 using Feedback.Database.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Feedback.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ReviewRatingTypesController : ControllerBase
     {
         private ILookupService _lookupService;

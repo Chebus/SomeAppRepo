@@ -7,6 +7,7 @@ using Feedback.API.Controllers;
 using Feedback.Database.Models;
 using Feedback.UserInterface.Mappers;
 using Feedback.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Feedback.Web.Controllers
