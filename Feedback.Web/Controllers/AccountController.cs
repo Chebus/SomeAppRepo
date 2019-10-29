@@ -35,10 +35,14 @@ namespace Feedback.UserInterface.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(UserViewModel vm)
         {
-            var user = await _userService.Authenticate(vm.Id, vm.Password);
-            await Login(user.Id);
+            var user = _userService.Authenticate(vm.Id, vm.Password);
 
-            //todo: handle errors
+            if (user == null)
+            {
+                //todo: login failed
+            }
+
+            await Login(user.Id);
 
             //redirect user back to page they were trying to get to (TODO: verify this works)
             var redirectUrl = Request.Query["ReturnUrl"];

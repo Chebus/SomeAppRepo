@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Feedback.Database.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Feedback.Database.Models;
 
 namespace Feedback.Web
 {
@@ -63,6 +65,7 @@ namespace Feedback.Web
             services.AddScoped<ILookupService, LookupService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

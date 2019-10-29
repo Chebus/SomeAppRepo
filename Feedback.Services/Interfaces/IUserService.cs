@@ -8,6 +8,8 @@ namespace Feedback.Database.Interfaces
 {
     public interface IUserService
     {
-        Task<User> Authenticate(string user, string password);
+        User Authenticate(string id, string password);
+
+        User Create(string id, string password);
     }
 }

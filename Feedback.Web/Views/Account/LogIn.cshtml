@@ -1,7 +1,17 @@
-﻿@{
+﻿@model UserViewModel
+
+@{
     ViewData["Title"] = "Login";
 }
 
 <form asp-action="Login" asp-controller="Account">
+     @Html.LabelFor(x => x.Id)
+     @Html.TextBoxFor(x => x.Id)
+     @Html.ValidationMessageFor(x => x.Id)
+
+     @Html.LabelFor(x => x.Password)
+     @Html.TextBoxFor(x => x.Password)
+     @Html.ValidationMessageFor(x => x.Password)
+
     <button type="submit" class="btn btn-primary">Login</button>
 </form>

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Feedback.Database.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,10 @@ namespace Feedback.Database.Contexts
         {
 
         }
+
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<ReviewRatingType> ReviewRatingTypes { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
