@@ -1,7 +1,9 @@
 ﻿using Feedback.Database.Contexts;
 using Feedback.Database.Interfaces;
 using Feedback.Database.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Feedback.Database.Services
 {
@@ -16,24 +18,18 @@ namespace Feedback.Database.Services
 
         public void CreateReview(Review review)
         {
-            //todo
+            _context.Reviews.Add(review);
+            _context.SaveChanges();
         }
 
         public List<Review> GetReviews()
         {
-            //todo
-            return new List<Review>();
+            return _context.Reviews.Include(x => x.ReviewRatingType).ToList();
         }
 
         public Review GetReview(int id)
         {
-            //todo
-            if (id == 1)
-            {
-                return new Review();
-            }
-
-            return null;
+            return _context.Reviews.Find(id);
         }
     }
 }

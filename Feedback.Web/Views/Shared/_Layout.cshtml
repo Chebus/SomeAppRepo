@@ -31,7 +31,7 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Review" asp-action="Index">@ViewData["SiteTitle"]</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (User.Identity.IsAuthenticated){
+                        @if (User.Identity.IsAuthenticated) {
                         <li class="nav-item ml-auto">
                             <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Sign Out</a>
                         </li>
@@ -43,7 +43,14 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData["ResultsMessageIsError"] != null && TempData["ResultsMessage"] != null)
+            {
+                <div id="divResultsMessage">
+                    <span class="@Html.Raw((bool)TempData["ResultsMessageIsError"] ? "errorMsg" : "successMsg")">@TempData["ResultsMessage"]</span>
+                </div>
+            }
             @RenderBody()
+            <partial name="_Modal" />
         </main>
     </div>
 

@@ -23,11 +23,6 @@ namespace Feedback.API.Controllers
         public ActionResult<IEnumerable<Review>> Get()
         {
             var result = _reviewService.GetReviews();
-            if (result == null)
-            {
-                return NotFound();
-            }
-
             return Ok(result);
         }
 
@@ -40,7 +35,6 @@ namespace Feedback.API.Controllers
             {
                 return NotFound();
             }
-
             return Ok(result);
         }
 
@@ -49,7 +43,6 @@ namespace Feedback.API.Controllers
         public StatusCodeResult Post([FromBody] Review review)
         {
             _reviewService.CreateReview(review);
-
             return Ok();
         }
     }

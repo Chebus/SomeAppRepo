@@ -1,15 +1,17 @@
 ﻿using Feedback.API.Controllers;
 using Feedback.Database.Models;
+using Feedback.UserInterface.Controllers;
 using Feedback.UserInterface.Mappers;
 using Feedback.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
 namespace Feedback.Web.Controllers
 {
-    public class ReviewController : Controller
+    public class ReviewController : BaseController
     {
         private ReviewsController _reviewsController;
         private ReviewRatingTypesController _reviewRatingTypesController;
@@ -31,22 +33,33 @@ namespace Feedback.Web.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return PartialView("_Add", new ReviewViewModel());
+            var vm = new ReviewViewModel();
+
+            var ratingTypesResult = _reviewRatingTypesController.Get();
+            if (ratingTypesResult.Result.GetType() == typeof(OkObjectResult))
+            {
+                var ratingTypes = ((ratingTypesResult.Result as OkObjectResult).Value as IEnumerable<ReviewRatingType>);
+                vm.RatingTypes = new SelectList(ratingTypes.Select(x => x.ToVm()), nameof(IdValueViewModel.Id), nameof(IdValueViewModel.Value));
+            }
+
+            return PartialView("_Add", vm);
         }
 
         // POST: /<controller>/Add
         [HttpPost]
         public IActionResult Add(ReviewViewModel vm)
         {
-            var result = _reviewsController.Post(vm.ToReview());
+            var result = _reviewsController.Post(vm.ToEntity());
 
             if (result.GetType() == typeof(OkResult))
             {
                 //success message
+                SetResultsMessage("Your review has been added sucessfully!");
             }
             else
             {
                 //Error
+                SetResultsMessage("An unknown error occured while trying to add your review. Please try again.", false);
             }
 
             return RedirectToAction(nameof(Index));
@@ -56,23 +69,19 @@ namespace Feedback.Web.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<int>> List()
         {
-            var list = new List<int>() { 0 };
+            var list = new List<ReviewListViewModel>();
 
             var result = _reviewsController.Get();
 
             if (result.Result.GetType() == typeof(OkObjectResult))
             {
                 var reviews = ((result.Result as OkObjectResult).Value as IEnumerable<Review>);
-
-                list = reviews.Select(x => x.ReviewRatingTypeId).ToList();
-            }
-            else if (result.Result.GetType() == typeof(NotFoundResult))
-            {
-                //Show 404 message
+                list = reviews.Select(x => x.ToListVm()).ToList();
             }
             else
             {
                 //Error
+                SetResultsMessage("An unknown error occured while trying to get the list of reviews.", false);
             }
 
             return Json(new { data = list });
@@ -99,10 +108,12 @@ namespace Feedback.Web.Controllers
             else if (httpResult.StatusCode == (int)HttpStatusCode.NotFound)
             {
                 //Show 404 message
+                SetResultsMessage("The review you requested could not be found. Please try again.", false);
             }
             else
             {
                 //Error
+                SetResultsMessage("An unknown error occured while trying to get the review. Please try again.", false);
             }
 
             return reviewVm;

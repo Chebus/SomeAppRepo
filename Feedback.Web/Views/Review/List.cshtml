@@ -15,17 +15,31 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary tcModalButton" data-toggle="modal" data-target="#mdlAddReview">Add a New Review</button>
+    <button type="button" class="btn btn-primary tcModalButton" data-toggle="modal" data-target="#mdlModal" data-title="Add a New Review" data-url="@Url.Action("Add", "Review")">Add a New Review</button>
 </div>
 
-<partial name="_Add" />
+@*<partial name="_Add" />*@
 
 @section Scripts{
     <script tpye="text/javascript">
     $(document).ready( function () {
         $('#tblReviews').DataTable({
             ajax: "@Url.Action("List", "Review")",
+            columns: [{ data: "rating" }],
             searching: false
+        });
+
+        $(document).on("click", ".tcModalButton", function () {
+            var url = $(this).data("url");
+            var title = $(this).data("title");
+            var id = $(this).data("id");
+
+             $("#mdlModal .modal-title").html(title);
+            if (id == null) {
+                $("#mdlModal .modal-body").load(url);
+            } else {
+                $("#mdlModal .modal-body").load(url, { "id": id });
+            }
         });
     });
     </script>

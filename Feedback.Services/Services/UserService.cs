@@ -30,7 +30,7 @@ namespace Feedback.Database.Services
 
         public User Create(string id, string password)
         {
-            var user = new User() { Id = id };
+            var user = new User() { UserId = id };
             user.PasswordHash = _passwordHasher.HashPassword(user, password);
 
             _context.Users.Add(user);

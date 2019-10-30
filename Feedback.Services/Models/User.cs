@@ -7,7 +7,7 @@ namespace Feedback.Database.Models
     public class User
     {
         [Column("user_id"), Key]
-        public string Id { get; set; }
+        public string UserId { get; set; }
 
         [Column("password_hash")]
         public string PasswordHash { get; set; }

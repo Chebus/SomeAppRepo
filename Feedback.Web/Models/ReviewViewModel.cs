@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Feedback.Web.Models
@@ -7,6 +9,8 @@ namespace Feedback.Web.Models
     {
         public int Id { get; set; }
 
+        [DisplayName("Rating")]
+        [Required(ErrorMessage = "Rating field is required.")]
         public int RatingId { get; set; }
 
         [DisplayName("Rating")]
@@ -15,5 +19,7 @@ namespace Feedback.Web.Models
         [DisplayName("Comment")]
         [Required(ErrorMessage = "Comment field is required.")]
         public string Comment { get; set; }
+
+        public SelectList RatingTypes { get; set; }
     }
 }

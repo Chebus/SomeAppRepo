@@ -8,11 +8,11 @@ namespace Feedback.Database.Models
     public class ReviewRatingType
     {
         [Column("review_rating_type_id"), Key]
-        public int Id { get; set; }
+        public int ReviewRatingTypeId { get; set; }
 
         [Column("english_name_txt")]
         public string EnglishText { get; set; }
 
-        public virtual IEnumerable<Review> Reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

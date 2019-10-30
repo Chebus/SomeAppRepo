@@ -6,16 +6,16 @@ namespace Feedback.Database.Models
     [Table("reviews")]
     public class Review
     {
-        [Column("review_id"), Key]
-        public int Id { get; set; }
+        [Column("review_id"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ReviewId { get; set; }
 
         [Column("review_rating_type_id")]
+        [ForeignKey(nameof(ReviewRatingType))]
         public int ReviewRatingTypeId { get; set; }
 
         [Column("comment_txt")]
         public string Comment { get; set; }
 
-        [ForeignKey(nameof(ReviewRatingTypeId))]
         public virtual ReviewRatingType ReviewRatingType { get; set; }
     }
 }

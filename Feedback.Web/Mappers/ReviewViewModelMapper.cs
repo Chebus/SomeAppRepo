@@ -5,13 +5,13 @@ namespace Feedback.UserInterface.Mappers
 {
     public static class ReviewViewModelMapper
     {
-        public static Review ToReview(this ReviewViewModel model)
+        public static Review ToEntity(this ReviewViewModel vm)
         {
             return new Review()
             {
-                Id = model.Id,
-                ReviewRatingTypeId = model.RatingId,
-                Comment = model.Comment,
+                ReviewId = vm.Id,
+                ReviewRatingTypeId = vm.RatingId,
+                Comment = vm.Comment,
             };
         }
     }

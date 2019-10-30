@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Feedback.UserInterface.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private IUserService _userService;
 
@@ -37,10 +37,11 @@ namespace Feedback.UserInterface.Controllers
 
             if (user == null)
             {
-                //todo: login failed
+                //Login failed
+                SetResultsMessage("The username or password are invalid. Please try again.", false);
             }
 
-            await Login(user.Id);
+            await Login(user.UserId);
 
             //redirect user back to page they were trying to get to (TODO: verify this works)
             var redirectUrl = Request.Query["ReturnUrl"];
@@ -58,6 +59,8 @@ namespace Feedback.UserInterface.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            SetResultsMessage("You have been signed out sucessfully!");
 
             return RedirectToAction("Index");
         }
