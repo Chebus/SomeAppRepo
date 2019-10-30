@@ -65,9 +65,8 @@ namespace Feedback.Web
             });
 
             //Configure DB context
-            var connectionString = Configuration["AppSettings:ConnectionString"];
-            var isEnvVariable = bool.Parse(Configuration["AppSettings:IsConnectionStringEnvVariable"]);
-            services.AddDbContext<FeedbackDbContext>(options => options.UseMySql(isEnvVariable ? Environment.GetEnvironmentVariable(connectionString) : connectionString));
+            var connectionString = Configuration["ConnectionStrings:Feedback_ConnectionString"];
+            services.AddDbContext<FeedbackDbContext>(options => options.UseMySql(connectionString));
 
             //Register services
             services.AddScoped<ILookupService, LookupService>();
@@ -98,7 +97,7 @@ namespace Feedback.Web
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Feedback API V1" + Environment.GetEnvironmentVariable(Configuration["AppSettings:ConnectionString"]));
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Feedback API V1" + Configuration["ConnectionStrings:Feedback_ConnectionString"]);
             });
 
             app.UseMvc(routes =>
