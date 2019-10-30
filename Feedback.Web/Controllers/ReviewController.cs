@@ -49,7 +49,7 @@ namespace Feedback.Web.Controllers
         [HttpPost]
         public IActionResult Add(ReviewViewModel vm)
         {
-            var result = _reviewsController.Post(vm.ToEntity());
+            var result = _reviewsController.Post(vm.ToDto());
 
             if (result.GetType() == typeof(OkResult))
             {

@@ -1,6 +1,7 @@
 ﻿using Feedback.Database.Interfaces;
 using Feedback.Database.Models;
-using Microsoft.AspNetCore.Authorization;
+using Feedback.UserInterface.Mappers;
+using Feedback.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -39,11 +40,27 @@ namespace Feedback.API.Controllers
 
         // POST api/review
         [HttpPost]
-        public StatusCodeResult Post([FromBody] Review review)
+        public IActionResult Post([FromBody] ReviewDto dto)
         {
             try
             {
-                _reviewService.CreateReview(review);
+                if (ModelState.IsValid)
+                {
+                    var review = dto.ToEntity();
+                    _reviewService.CreateReview(review);
+                }
+                else
+                {
+                    var errors = new List<string>();
+                    foreach (var state in ModelState)
+                    {
+                        foreach (var error in state.Value.Errors)
+                        {
+                            errors.Add(error.ErrorMessage);
+                        }
+                    }
+                    return BadRequest(errors);
+                }
             }
             catch
             {

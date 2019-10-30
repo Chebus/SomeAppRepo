@@ -3,7 +3,7 @@ using Feedback.Web.Models;
 
 namespace Feedback.UserInterface.Mappers
 {
-    public static class IdValueViewModelMapper
+    public static class ReviewRatingTypeMapper
     {
         public static IdValueViewModel ToVm(this ReviewRatingType entity)
         {

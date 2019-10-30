@@ -3,13 +3,12 @@ using Feedback.Web.Models;
 
 namespace Feedback.UserInterface.Mappers
 {
-    public static class ReviewViewModelMapper
+    public static partial class ReviewMapper
     {
-        public static Review ToEntity(this ReviewViewModel vm)
+        public static ReviewDto ToDto(this ReviewViewModel vm)
         {
-            return new Review()
+            return new ReviewDto()
             {
-                ReviewId = vm.Id,
                 ReviewRatingTypeId = vm.RatingId,
                 Comment = vm.Comment,
             };

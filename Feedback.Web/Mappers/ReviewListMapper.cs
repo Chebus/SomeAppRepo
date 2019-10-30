@@ -3,7 +3,7 @@ using Feedback.Web.Models;
 
 namespace Feedback.UserInterface.Mappers
 {
-    public static class ReviewListViewModelMapper
+    public static class ReviewListMapper
     {
         public static ReviewListViewModel ToListVm(this Review entity, string viewLinkUrl)
         {
