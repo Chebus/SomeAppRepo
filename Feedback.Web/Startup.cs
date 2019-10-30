@@ -97,7 +97,7 @@ namespace Feedback.Web
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Feedback API V1" + Configuration["ConnectionStrings:Feedback_ConnectionString"]);
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Feedback API V1");
             });
 
             app.UseMvc(routes =>
