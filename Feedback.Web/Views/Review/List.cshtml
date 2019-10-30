@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Rating</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,22 +25,20 @@
     <script tpye="text/javascript">
     $(document).ready( function () {
         $('#tblReviews').DataTable({
-            ajax: "@Url.Action("List", "Review")",
-            columns: [{ data: "rating" }],
-            searching: false
+            "ajax" : "@Url.Action("List", "Review")",
+            "columns" : [
+                { "data" : "rating" },
+                { "data" : "viewLink" }
+            ],
+            "searching" : false
         });
 
         $(document).on("click", ".tcModalButton", function () {
             var url = $(this).data("url");
             var title = $(this).data("title");
-            var id = $(this).data("id");
 
              $("#mdlModal .modal-title").html(title);
-            if (id == null) {
-                $("#mdlModal .modal-body").load(url);
-            } else {
-                $("#mdlModal .modal-body").load(url, { "id": id });
-            }
+             $("#mdlModal .modal-body").load(url);
         });
     });
     </script>

@@ -76,7 +76,7 @@ namespace Feedback.Web.Controllers
             if (result.Result.GetType() == typeof(OkObjectResult))
             {
                 var reviews = ((result.Result as OkObjectResult).Value as IEnumerable<Review>);
-                list = reviews.Select(x => x.ToListVm()).ToList();
+                list = reviews.Select(x => x.ToListVm(Url.Action("Get", "Review", new { id = x.ReviewId }))).ToList();
             }
             else
             {
@@ -99,11 +99,7 @@ namespace Feedback.Web.Controllers
             {
                 var review = (httpResult.Value as Review);
 
-                reviewVm = new ReviewViewModel()
-                {
-                    Rating = review.ReviewRatingType.EnglishText,
-                    Comment = review.Comment
-                };
+                reviewVm = review.ToVm();
             }
             else if (httpResult.StatusCode == (int)HttpStatusCode.NotFound)
             {
@@ -116,7 +112,7 @@ namespace Feedback.Web.Controllers
                 SetResultsMessage("An unknown error occured while trying to get the review. Please try again.", false);
             }
 
-            return reviewVm;
+            return PartialView("_View", reviewVm);
         }
     }
 }

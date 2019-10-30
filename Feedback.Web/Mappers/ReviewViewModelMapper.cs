@@ -14,5 +14,14 @@ namespace Feedback.UserInterface.Mappers
                 Comment = vm.Comment,
             };
         }
+
+        public static ReviewViewModel ToVm(this Review entity)
+        {
+            return new ReviewViewModel()
+            {
+                Rating = entity.ReviewRatingType.EnglishText,
+                Comment = entity.Comment
+            };
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace Feedback.Database.Services
 
         public Review GetReview(int id)
         {
-            return _context.Reviews.Find(id);
+            return _context.Reviews.Include(x => x.ReviewRatingType).SingleOrDefault(x => x.ReviewId == id);
         }
     }
 }
