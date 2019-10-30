@@ -17,6 +17,7 @@ namespace Feedback.Web.Models
 
         [DisplayName("Comment")]
         [Required(ErrorMessage = "Comment field is required.")]
+        [MaxLength(250, ErrorMessage = "Comment field cannot exceed 250 characters.")]
         public string Comment { get; set; }
 
         public SelectList RatingTypes { get; set; }

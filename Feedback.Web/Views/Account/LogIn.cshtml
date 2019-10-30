@@ -5,13 +5,17 @@
 }
 
 <form asp-action="Login" asp-controller="Account">
-     @Html.LabelFor(x => x.Id)
-     @Html.TextBoxFor(x => x.Id)
-     @Html.ValidationMessageFor(x => x.Id)
-
-     @Html.LabelFor(x => x.Password)
-     @Html.PasswordFor(x => x.Password)
-     @Html.ValidationMessageFor(x => x.Password)
-
-    <button type="submit" class="btn btn-primary">Login</button>
+    <div class="col-5">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Id)
+            @Html.TextBoxFor(x => x.Id, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Id)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Password)
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
 </form>

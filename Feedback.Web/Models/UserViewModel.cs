@@ -5,8 +5,8 @@ namespace Feedback.Web.Models
 {
     public class UserViewModel
     {
-        [DisplayName("User Id")]
-        [Required(ErrorMessage = "User Id field is required.")]
+        [DisplayName("Username")]
+        [Required(ErrorMessage = "Username field is required.")]
         public string Id { get; set; }
 
         [DisplayName("Password")]

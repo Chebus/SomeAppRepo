@@ -59,7 +59,7 @@ namespace Feedback.Web.Controllers
             else
             {
                 //Error
-                SetResultsMessage("An unknown error occured while trying to add your review. Please try again.", false);
+                SetResultsMessage("An unknown error occured while trying to add your review. Please try again.", true);
             }
 
             return RedirectToAction(nameof(Index));
@@ -81,7 +81,7 @@ namespace Feedback.Web.Controllers
             else
             {
                 //Error
-                SetResultsMessage("An unknown error occured while trying to get the list of reviews.", false);
+                SetResultsMessage("An unknown error occured while trying to get the list of reviews.", true);
             }
 
             return Json(new { data = list });
@@ -104,12 +104,12 @@ namespace Feedback.Web.Controllers
             else if (httpResult.StatusCode == (int)HttpStatusCode.NotFound)
             {
                 //Show 404 message
-                SetResultsMessage("The review you requested could not be found. Please try again.", false);
+                SetResultsMessage("The review you requested could not be found. Please try again.", true);
             }
             else
             {
                 //Error
-                SetResultsMessage("An unknown error occured while trying to get the review. Please try again.", false);
+                SetResultsMessage("An unknown error occured while trying to get the review. Please try again.", true);
             }
 
             return PartialView("_View", reviewVm);

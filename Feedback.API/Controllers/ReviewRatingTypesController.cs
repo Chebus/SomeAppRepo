@@ -8,7 +8,6 @@ namespace Feedback.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class ReviewRatingTypesController : ControllerBase
     {
         private ILookupService _lookupService;

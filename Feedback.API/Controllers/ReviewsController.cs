@@ -8,7 +8,6 @@ namespace Feedback.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class ReviewsController : ControllerBase
     {
         private IReviewService _reviewService;

@@ -14,6 +14,7 @@ namespace Feedback.Database.Models
         public int ReviewRatingTypeId { get; set; }
 
         [Column("comment_txt")]
+        [MaxLength(250)]
         public string Comment { get; set; }
 
         public virtual ReviewRatingType ReviewRatingType { get; set; }

@@ -38,19 +38,12 @@ namespace Feedback.UserInterface.Controllers
             if (user == null)
             {
                 //Login failed
-                SetResultsMessage("The username or password are invalid. Please try again.", false);
+                SetResultsMessage("The username or password are invalid. Please try again.", true);
+                return View();
             }
 
             await Login(user.UserId);
-
-            //redirect user back to page they were trying to get to (TODO: verify this works)
-            var redirectUrl = Request.Query["ReturnUrl"];
-            if (string.IsNullOrEmpty(redirectUrl))
-            {
-                return RedirectToAction("Index", "Review");
-            }
-
-            return Redirect(redirectUrl);
+            return RedirectToAction("Index", "Review");
         }
 
         // GET: /<controller>/Logout
