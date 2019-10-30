@@ -47,7 +47,12 @@ namespace Feedback.Web
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .AddApplicationPart(apiAssembly)
-            .AddControllersAsServices();
+            .AddControllersAsServices()
+            .ConfigureApiBehaviorOptions(options =>
+            {
+                //options.SuppressModelStateInvalidFilter = true;
+                options.SuppressMapClientErrors = true;
+            });
 
             //configure authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -68,6 +73,15 @@ namespace Feedback.Web
                 var xmlFile = $"Feedback.API.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
+                var apiScheme = new OpenApiSecurityScheme()
+                {
+                    Type = SecuritySchemeType.ApiKey,
+                    Name = ".AspNetCore.Cookies",
+                    In = ParameterLocation.Cookie
+                };
+
+                c.AddSecurityDefinition("cookieAuth", apiScheme);
             });
 
             //Configure DB context
@@ -84,7 +98,15 @@ namespace Feedback.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error/Error");
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

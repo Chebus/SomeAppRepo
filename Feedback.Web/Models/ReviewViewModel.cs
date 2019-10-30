@@ -10,6 +10,7 @@ namespace Feedback.Web.Models
 
         [DisplayName("Rating")]
         [Required(ErrorMessage = "Rating field is required.")]
+        [Range(1, 3, ErrorMessage = "Rating field is invalid.")]
         public int RatingId { get; set; }
 
         [DisplayName("Rating")]

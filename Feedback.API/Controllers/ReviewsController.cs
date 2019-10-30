@@ -1,4 +1,5 @@
-﻿using Feedback.Database.Interfaces;
+﻿using Feedback.API.DTOs;
+using Feedback.Database.Interfaces;
 using Feedback.Database.Models;
 using Feedback.UserInterface.Mappers;
 using Feedback.Web.Models;
@@ -24,8 +25,10 @@ namespace Feedback.API.Controllers
         /// </summary>
         /// <returns>List of Reviews</returns>
         /// <response code="200">Returns the list of Reviews</response>
+        /// <response code="400">If the request is malformed or invalid</response>
         [HttpGet]
         [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(ModelErrorDto), 400)]
         public ActionResult<IEnumerable<Review>> Get()
         {
             var result = _reviewService.GetReviews();
@@ -38,9 +41,11 @@ namespace Feedback.API.Controllers
         /// </summary>
         /// <returns>The specified Review</returns>
         /// <response code="200">Returns the Review</response>
+        /// <response code="400">If the request is malformed or invalid</response>
         /// <response code="404">If the Review does not exist</response>
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(ModelErrorDto), 400)]
         [ProducesResponseType(404)]
         public ActionResult<Review> Get(int id)
         {
@@ -62,32 +67,19 @@ namespace Feedback.API.Controllers
         /// <response code="400">If there were errors</response>
         [HttpPost]
         [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(typeof(ModelErrorDto), 400)]
         public IActionResult Post([FromBody] ReviewDto dto)
         {
+            //automatic .NET Core ModelState validation FTW!
+
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var review = dto.ToEntity();
-                    _reviewService.CreateReview(review);
-                }
-                else
-                {
-                    var errors = new List<string>();
-                    foreach (var state in ModelState)
-                    {
-                        foreach (var error in state.Value.Errors)
-                        {
-                            errors.Add(error.ErrorMessage);
-                        }
-                    }
-                    return BadRequest(errors);
-                }
+                var review = dto.ToEntity();
+                _reviewService.CreateReview(review);
             }
             catch
             {
-                return BadRequest();
+                return BadRequest(new ModelErrorDto() { Errors = new List<string> { "An unknown error occured." } });
             }
             return Ok();
         }
