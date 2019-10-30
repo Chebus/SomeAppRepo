@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Feedback.Database.Models
@@ -12,7 +11,5 @@ namespace Feedback.Database.Models
 
         [Column("english_name_txt")]
         public string EnglishText { get; set; }
-
-        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

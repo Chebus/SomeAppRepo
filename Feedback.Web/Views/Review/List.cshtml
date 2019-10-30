@@ -19,8 +19,6 @@
     <button type="button" class="btn btn-primary tcModalButton" data-toggle="modal" data-target="#mdlModal" data-title="Add a New Review" data-url="@Url.Action("Add", "Review")">Add a New Review</button>
 </div>
 
-@*<partial name="_Add" />*@
-
 @section Scripts{
     <script tpye="text/javascript">
     $(document).ready( function () {
@@ -31,14 +29,6 @@
                 { "data" : "viewLink" }
             ],
             "searching" : false
-        });
-
-        $(document).on("click", ".tcModalButton", function () {
-            var url = $(this).data("url");
-            var title = $(this).data("title");
-
-             $("#mdlModal .modal-title").html(title);
-             $("#mdlModal .modal-body").load(url);
         });
     });
     </script>

@@ -1,6 +1,5 @@
 ﻿using Feedback.Database.Models;
 using Feedback.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Feedback.UserInterface.Mappers
 {

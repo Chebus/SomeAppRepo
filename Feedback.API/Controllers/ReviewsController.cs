@@ -42,7 +42,14 @@ namespace Feedback.API.Controllers
         [HttpPost]
         public StatusCodeResult Post([FromBody] Review review)
         {
-            _reviewService.CreateReview(review);
+            try
+            {
+                _reviewService.CreateReview(review);
+            }
+            catch
+            {
+                return BadRequest();
+            }
             return Ok();
         }
     }

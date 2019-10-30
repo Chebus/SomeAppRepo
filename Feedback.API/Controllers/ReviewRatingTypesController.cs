@@ -30,12 +30,5 @@ namespace Feedback.API.Controllers
 
             return Ok(result);
         }
-
-        //// GET api/reviewratingtypes/5
-        //[HttpGet("{id}")]
-        //public ActionResult<string> Get(int id)
-        //{
-        //    return "value";
-        //}
     }
 }
