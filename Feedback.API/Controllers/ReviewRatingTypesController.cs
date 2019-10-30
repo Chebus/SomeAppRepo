@@ -18,15 +18,16 @@ namespace Feedback.API.Controllers
         }
 
         // GET api/reviewratingtypes
+        /// <summary>
+        /// Gets a list of Review Rating Types
+        /// </summary>
+        /// <returns>List of Review Rating Types</returns>
+        /// <response code="200">Returns the list of Review Rating Types</response>
         [HttpGet]
+        [ProducesResponseType(200)]
         public ActionResult<IEnumerable<ReviewRatingType>> Get()
         {
             var result = _lookupService.GetReviewRatingTypes();
-            if (result == null)
-            {
-                return NotFound();
-            }
-
             return Ok(result);
         }
     }
