@@ -19,5 +19,10 @@ namespace Feedback.Database.Services
         {
             return _context.ReviewRatingTypes.ToList();
         }
+
+        public ReviewRatingType GetReviewRatingType(int id)
+        {
+            return _context.ReviewRatingTypes.SingleOrDefault(x => x.ReviewRatingTypeId == id);
+        }
     }
 }
