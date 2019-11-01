@@ -2,6 +2,12 @@
 
 <form asp-controller="Review" asp-action="Add" method="post">
     <div>
+        @if (TempData["ResultsMessageIsError"] != null && TempData["ResultsMessage"] != null)
+        {
+            <div id="divResultsMessage">
+                <span class="@Html.Raw((bool)TempData["ResultsMessageIsError"] ? "errorMsg" : "successMsg")">@TempData["ResultsMessage"]</span>
+            </div>
+        }
         <div class="form-group">
             @Html.LabelFor(x => x.RatingId)
             @Html.DropDownListFor(x => x.RatingId, Model.RatingTypes, "Select", new { @class = "form-control" })

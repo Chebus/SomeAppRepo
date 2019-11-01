@@ -33,6 +33,7 @@ namespace Feedback.UserInterface.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(UserViewModel vm)
         {
+            //try to authenticate the user
             var user = _userService.Authenticate(vm.Id, vm.Password);
 
             if (user == null)
@@ -72,6 +73,7 @@ namespace Feedback.UserInterface.Controllers
             {
             };
 
+            //sign the user in
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
         }
     }

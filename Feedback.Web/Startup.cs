@@ -50,7 +50,7 @@ namespace Feedback.Web
             .AddControllersAsServices()
             .ConfigureApiBehaviorOptions(options =>
             {
-                //options.SuppressModelStateInvalidFilter = true;
+                //do not send ProblemDetails result objects as 400 responses
                 options.SuppressMapClientErrors = true;
             });
 
@@ -74,6 +74,7 @@ namespace Feedback.Web
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
 
+                //Define the security scheme in swagger
                 var apiScheme = new OpenApiSecurityScheme()
                 {
                     Type = SecuritySchemeType.ApiKey,
@@ -88,7 +89,7 @@ namespace Feedback.Web
             var connectionString = Configuration["ConnectionStrings:Feedback_ConnectionString"];
             services.AddDbContext<FeedbackDbContext>(options => options.UseMySql(connectionString));
 
-            //Register services
+            //Register services for DI
             services.AddScoped<ILookupService, LookupService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IUserService, UserService>();
@@ -119,6 +120,7 @@ namespace Feedback.Web
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Feedback API V1");
             });
 
+            //Define routes and default home page
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -128,6 +130,7 @@ namespace Feedback.Web
             });
         }
 
+        //Prevents redirecting from request paths beginning with "/api"
         private static Func<RedirectContext<CookieAuthenticationOptions>, Task> ReplaceRedirector(HttpStatusCode statusCode, Func<RedirectContext<CookieAuthenticationOptions>, Task> existingRedirector) =>
     context =>
     {

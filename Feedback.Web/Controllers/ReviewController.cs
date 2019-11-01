@@ -35,9 +35,11 @@ namespace Feedback.Web.Controllers
         {
             var vm = new ReviewViewModel();
 
+            //Get the list of Review Ratings
             var ratingTypesResult = _reviewRatingTypesController.Get();
             if (ratingTypesResult.Result.GetType() == typeof(OkObjectResult))
             {
+                //If the response was OK, get the results and convert them to a SelectList
                 var ratingTypes = ((ratingTypesResult.Result as OkObjectResult).Value as IEnumerable<ReviewRatingType>);
                 vm.RatingTypes = new SelectList(ratingTypes.Select(x => x.ToVm()), nameof(IdValueViewModel.Id), nameof(IdValueViewModel.Value));
             }
@@ -49,6 +51,7 @@ namespace Feedback.Web.Controllers
         [HttpPost]
         public IActionResult Add(ReviewViewModel vm)
         {
+            //convert the ReviewViewModel to a DTO object accepted by the API and POST it
             var result = _reviewsController.Post(vm.ToDto());
 
             if (result.GetType() == typeof(OkResult))
@@ -71,10 +74,12 @@ namespace Feedback.Web.Controllers
         {
             var list = new List<ReviewListViewModel>();
 
+            //get the list of REviews to display
             var result = _reviewsController.Get();
 
             if (result.Result.GetType() == typeof(OkObjectResult))
             {
+                //If the response was OK, map the result to a ViewModel and set the View URL link
                 var reviews = ((result.Result as OkObjectResult).Value as IEnumerable<Review>);
                 list = reviews.Select(x => x.ToListVm(Url.Action("Get", "Review", new { id = x.ReviewId }))).ToList();
             }
@@ -93,15 +98,16 @@ namespace Feedback.Web.Controllers
         {
             ReviewViewModel reviewVm = null;
 
-            var httpResult = (_reviewsController.Get(id).Result as ObjectResult);
+            //Get the specific Review
+            var httpResult = _reviewsController.Get(id);
 
-            if (httpResult.StatusCode == (int)HttpStatusCode.OK)
+            if (httpResult.Result.GetType() == typeof(OkObjectResult))
             {
-                var review = (httpResult.Value as Review);
-
+                //if the responmse was OK, convert the result to a ViewModel
+                var review = ((httpResult.Result as OkObjectResult).Value as Review);
                 reviewVm = review.ToVm();
             }
-            else if (httpResult.StatusCode == (int)HttpStatusCode.NotFound)
+            else if (httpResult.Result.GetType() == typeof(NotFoundResult))
             {
                 //Show 404 message
                 SetResultsMessage("The review you requested could not be found. Please try again.", true);
