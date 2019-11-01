@@ -84,6 +84,16 @@ namespace Feedback.Web
                 c.AddSecurityDefinition("cookieAuth", apiScheme);
             });
 
+            //Configure CORS
+            services.AddCors(options =>
+                options.AddPolicy("AllowCredentials",
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+                               .AllowCredentials();
+                    })
+            );
+
             //Configure DB context
             var connectionString = Configuration["ConnectionStrings:Feedback_ConnectionString"];
             services.AddDbContext<FeedbackDbContext>(options => options.UseMySql(connectionString));
