@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Feedback.Services\Feedback.Database.csproj" />
+    <ProjectReference Include="..\Feedback.Database\Feedback.Database.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

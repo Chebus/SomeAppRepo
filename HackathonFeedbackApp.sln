@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.UserInterface", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.API", "Feedback.API\Feedback.API.csproj", "{92AD3E7C-7774-44D9-BDD5-794E26D515CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.Database", "Feedback.Services\Feedback.Database.csproj", "{59105803-21BE-4AB1-BDD3-559FE5428AF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedback.Database", "Feedback.Database\Feedback.Database.csproj", "{1E290CBF-6373-4F7C-81A2-944B23FB9367}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{92AD3E7C-7774-44D9-BDD5-794E26D515CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92AD3E7C-7774-44D9-BDD5-794E26D515CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92AD3E7C-7774-44D9-BDD5-794E26D515CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59105803-21BE-4AB1-BDD3-559FE5428AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59105803-21BE-4AB1-BDD3-559FE5428AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59105803-21BE-4AB1-BDD3-559FE5428AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59105803-21BE-4AB1-BDD3-559FE5428AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E290CBF-6373-4F7C-81A2-944B23FB9367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E290CBF-6373-4F7C-81A2-944B23FB9367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E290CBF-6373-4F7C-81A2-944B23FB9367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E290CBF-6373-4F7C-81A2-944B23FB9367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
