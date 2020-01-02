@@ -86,7 +86,7 @@ namespace Feedback.Web
             });
 
             //Configure DB context
-            var connectionString = Configuration["ConnectionStrings:Feedback_ConnectionString"];
+            var connectionString = Configuration["Feedback_ConnectionString"];
             services.AddDbContext<FeedbackDbContext>(options => options.UseMySql(connectionString));
 
             //Register services for DI
