@@ -67,7 +67,7 @@ namespace Feedback.Web
             // Configure Swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Feedback API", Version = "v1", Description = "An application to gather user feedback for their experience with TC online services." + Configuration["Feedback_ConnectionString"] });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Feedback API", Version = "v1", Description = "An application to gather user feedback for their experience with TC online services." + Configuration["ConnectionStrings:MYSQLCONNSTR_Feedback_ConnectionString"] });
 
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"Feedback.API.xml";
@@ -86,7 +86,7 @@ namespace Feedback.Web
             });
 
             //Configure DB context
-            var connectionString = Configuration["Feedback_ConnectionString"];
+            var connectionString = Configuration["ConnectionStrings:MYSQLCONNSTR_Feedback_ConnectionString"];
             services.AddDbContext<FeedbackDbContext>(options => options.UseMySql(connectionString));
 
             //Register services for DI
