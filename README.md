@@ -1,2 +1,2 @@
 # App
-An application developed fopr the Transport Canda Hackathon
+An application developed for the Transport Canda Hackathon
