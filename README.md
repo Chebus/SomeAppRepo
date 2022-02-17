@@ -1,2 +1,2 @@
 # App
-A sample application
+An application developed fopr the Transport Canda Hackathon
